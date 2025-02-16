@@ -30,7 +30,7 @@ way you like to break things down and write it.
    curl -sSL https://install.python-poetry.org | python3 -
    ```
 
-3. Configure Poetry to use local virtualenvs (recommended for IDE integration)
+3. Configure Poetry to install to local venv (recommended for IDE integration)
    ```bash
    poetry config virtualenvs.in-project true
    ```
@@ -61,6 +61,10 @@ way you like to break things down and write it.
    ```bash
    poetry env info
    ```
+
+Note that our `pyproject.toml` is kept minimal (no build-system or version specified 
+for example) since this is an application, not a library. For more information on
+Poetry and its usage, see [their docs](https://python-poetry.org/docs/).
 
 
 ## Set up Supabase
@@ -102,11 +106,22 @@ poetry run streamlit run app.py
 ```
 
 ### Keeping Dependencies Up to Date
-When there are changes to dependencies in `pyproject.toml`:
+To add a new dependency:
+```bash
+poetry add <dependency>
+```
+
+When there are externally committed changes to dependencies in `pyproject.toml`:
+```bash
+poetry lock
+poetry sync
+```
+
+To update dependencies based on `pyproject.toml` versions:
 ```bash
 poetry update
 ```
 
 ## TODO
-- migrate to Poetry
-- require signed commits
+- Require signed commits
+- Add poetry.lock to committed files?
