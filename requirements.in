@@ -1,3 +1,4 @@
 streamlit
 supabase
 black
+python-dotenv
