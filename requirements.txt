@@ -21,6 +21,8 @@ attrs==25.1.0
     #   aiohttp
     #   jsonschema
     #   referencing
+black==25.1.0
+    # via -r requirements.in
 blinker==1.9.0
     # via streamlit
 cachetools==5.5.1
@@ -33,7 +35,9 @@ certifi==2025.1.31
 charset-normalizer==3.4.1
     # via requests
 click==8.1.8
-    # via streamlit
+    # via
+    #   black
+    #   streamlit
 deprecation==2.1.0
     # via postgrest
 frozenlist==1.5.0
@@ -87,6 +91,8 @@ multidict==6.1.0
     # via
     #   aiohttp
     #   yarl
+mypy-extensions==1.0.0
+    # via black
 narwhals==1.26.0
     # via altair
 numpy==2.2.3
@@ -97,12 +103,17 @@ numpy==2.2.3
 packaging==24.2
     # via
     #   altair
+    #   black
     #   deprecation
     #   streamlit
 pandas==2.2.3
     # via streamlit
+pathspec==0.12.1
+    # via black
 pillow==11.1.0
     # via streamlit
+platformdirs==4.3.6
+    # via black
 postgrest==0.19.3
     # via supabase
 propcache==0.2.1
