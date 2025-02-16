@@ -10,6 +10,7 @@ from pydantic import BaseModel
 # TODO use SQLAlchemy or Prisma for ORM? and create model for Task
 # or check out https://github.com/makridenko/supadantic
 # TODO enable RLS in production for tasks table
+# TODO add auth and add user_id to tasks table
 
 # Initialize Supabase client
 load_dotenv()
