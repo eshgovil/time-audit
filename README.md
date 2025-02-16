@@ -36,8 +36,13 @@ way you like to break things down and write it.
    ```
 
 4. Install dependencies
+   1. For local development (default, includes dev dependencies):
    ```bash
    poetry install
+   ```
+   2. For production (no dev dependencies):
+   ```bash
+   poetry install --without dev
    ```
 
 5. Activate the virtual environment (note: your IDE should automatically do this)
@@ -52,9 +57,15 @@ way you like to break things down and write it.
 
    Note: If you get a "command not available" error with `poetry shell`, use `poetry env activate` instead.
 
+6. (Optional) Check Installed Python Version
+   ```bash
+   poetry env info
+   ```
+
+
 ## Set up Supabase
 1. Create a new project at [Supabase](https://supabase.com)
-2. Create a new table called `tasks` with the following columns:
+2. Create a new table called `tasks` with the following columns (easy through UI):
     ```sql
     id          bigint (primary key, identity)
     task        text (required)
@@ -88,6 +99,12 @@ streamlit run app.py
 Or using Poetry directly:
 ```bash
 poetry run streamlit run app.py
+```
+
+### Keeping Dependencies Up to Date
+When there are changes to dependencies in `pyproject.toml`:
+```bash
+poetry update
 ```
 
 ## TODO
