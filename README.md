@@ -13,7 +13,6 @@ way you like to break things down and write it.
 - Allocate hours to things done, view time allocation pie chart
 - Categorize things done, view category pie chart
 
-
 ## Setup Environment
 
 1. Install Python 3.13
@@ -26,27 +25,51 @@ way you like to break things down and write it.
    sudo apt install python3.13
    ```
 
-2. Create and activate virtual environment
+2. Install Poetry
    ```bash
-   python3.13 -m venv .venv
-   source .venv/bin/activate  # On Unix/macOS
-   # OR
-   .\venv\Scripts\activate  # On Windows
+   curl -sSL https://install.python-poetry.org | python3 -
    ```
 
-3. Install pip-tools
+3. Configure Poetry to install to local venv (recommended for IDE integration)
    ```bash
-   pip install pip-tools
+   poetry config virtualenvs.in-project true
    ```
 
 4. Install dependencies
+   1. For local development (default, includes dev dependencies):
    ```bash
-   pip-sync
+   poetry install
    ```
+   2. For production (no dev dependencies):
+   ```bash
+   poetry install --without dev
+   ```
+
+5. Activate the virtual environment (note: your IDE should automatically do this)
+   ```bash
+   # Option 1: Activate the environment (recommended)
+   poetry env use python3.13
+   poetry env activate
+
+   # Option 2: Run commands through Poetry
+   poetry run streamlit run app.py
+   ```
+
+   Note: If you get a "command not available" error with `poetry shell`, use `poetry env activate` instead.
+
+6. (Optional) Check Installed Python Version
+   ```bash
+   poetry env info
+   ```
+
+Note that our `pyproject.toml` is kept minimal (no build-system or version specified 
+for example) since this is an application, not a library. For more information on
+Poetry and its usage, see [their docs](https://python-poetry.org/docs/).
+
 
 ## Set up Supabase
 1. Create a new project at [Supabase](https://supabase.com)
-2. Create a new table called `tasks` with the following columns:
+2. Create a new table called `tasks` with the following columns (easy through UI):
     ```sql
     id          bigint (primary key, identity)
     task        text (required)
@@ -69,6 +92,35 @@ way you like to break things down and write it.
     SUPABASE_KEY=your_anon_key
     ```
 
+## Development
+
+### Running the App
+After activating the environment:
+```bash
+streamlit run app.py
+```
+
+Or using Poetry directly:
+```bash
+poetry run streamlit run app.py
+```
+
+### Keeping Dependencies Up to Date
+To add a new dependency:
+```bash
+poetry add <dependency>
+```
+
+When there are externally committed changes to dependencies in `pyproject.toml`:
+```bash
+poetry lock
+poetry sync
+```
+
+To update dependencies based on `pyproject.toml` versions:
+```bash
+poetry update
+```
+
 ## TODO
-- migrate to Poetry
-- require signed commits
+- Require signed commits
