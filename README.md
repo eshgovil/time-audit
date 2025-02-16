@@ -124,4 +124,3 @@ poetry update
 
 ## TODO
 - Require signed commits
-- Add poetry.lock to committed files?
