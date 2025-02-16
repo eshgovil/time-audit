@@ -13,7 +13,6 @@ way you like to break things down and write it.
 - Allocate hours to things done, view time allocation pie chart
 - Categorize things done, view category pie chart
 
-
 ## Setup Environment
 
 1. Install Python 3.13
@@ -26,23 +25,32 @@ way you like to break things down and write it.
    sudo apt install python3.13
    ```
 
-2. Create and activate virtual environment
+2. Install Poetry
    ```bash
-   python3.13 -m venv .venv
-   source .venv/bin/activate  # On Unix/macOS
-   # OR
-   .\venv\Scripts\activate  # On Windows
+   curl -sSL https://install.python-poetry.org | python3 -
    ```
 
-3. Install pip-tools
+3. Configure Poetry to use local virtualenvs (recommended for IDE integration)
    ```bash
-   pip install pip-tools
+   poetry config virtualenvs.in-project true
    ```
 
 4. Install dependencies
    ```bash
-   pip-sync
+   poetry install
    ```
+
+5. Activate the virtual environment (note: your IDE should automatically do this)
+   ```bash
+   # Option 1: Activate the environment (recommended)
+   poetry env use python3.13
+   poetry env activate
+
+   # Option 2: Run commands through Poetry
+   poetry run streamlit run app.py
+   ```
+
+   Note: If you get a "command not available" error with `poetry shell`, use `poetry env activate` instead.
 
 ## Set up Supabase
 1. Create a new project at [Supabase](https://supabase.com)
@@ -68,6 +76,19 @@ way you like to break things down and write it.
     SUPABASE_URL=your_project_url
     SUPABASE_KEY=your_anon_key
     ```
+
+## Development
+
+### Running the App
+After activating the environment:
+```bash
+streamlit run app.py
+```
+
+Or using Poetry directly:
+```bash
+poetry run streamlit run app.py
+```
 
 ## TODO
 - migrate to Poetry
