@@ -139,6 +139,8 @@ python-dateutil==2.9.0.post0
     #   pandas
     #   realtime
     #   storage3
+python-dotenv==1.0.1
+    # via -r requirements.in
 pytz==2025.1
     # via pandas
 realtime==2.3.0
