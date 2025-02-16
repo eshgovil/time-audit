@@ -4,17 +4,14 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "time-audit"
-version = "0.1.0"
-description = "App to easily and effectively track time usage"
-authors = [{name = "Eshan"}]
-license = {text = "MIT"}
-readme = "README.md"
 requires-python = "^3.13"
 dependencies = [
     "streamlit>=1.42.0",
     "supabase>=2.13.0",
     "python-dotenv>=1.0.1",
 ]
+dynamic = ["version", "description", "readme", "license", "authors"]
+
 
 [tool.poetry]
 package-mode = false
